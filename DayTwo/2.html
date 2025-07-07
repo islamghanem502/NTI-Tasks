@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NTI Task</title>
+</head>
+<body>
+  <script>
+    let s = prompt("Enter string:");
+    let caseSen = prompt("consider case? (y/no):");
+
+
+    if (caseSen.toLowerCase() === "no") {
+      s = s.toLowerCase();
+    }
+
+    let reversed = s.split("").reverse().join("");
+
+    if (s === reversed) {
+      alert("✔️ It is a palindrome!");
+    } else {
+      alert("❌ It is NOT a palindrome.");
+    }
+  </script>
+</body>
+</html>
