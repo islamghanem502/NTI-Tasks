@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch Posts - then & async/await</title>
+  <style>
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      max-width: 500px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="fetchPostsWithThen(5)">Load Posts (.then)</button>
+  <button onclick="fetchPostsAsync(3)">Load Posts (async/await)</button>
+
+  <div id="posts-container"></div>
+
+  <script>
+    function createCard(post) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<h3>${post.title}</h3><p>${post.body}</p>`;
+      return card;
+    }
+
+    function clearContainer() {
+      document.getElementById("posts-container").innerHTML = "";
+    }
+
+    /*-------------first way--------------------*/
+
+    function fetchPostsWithThen(limit) {
+      clearContainer();
+
+      fetch("https://jsonplaceholder.typicode.com/posts")
+        .then(res => res.json())
+        .then(data => {
+          for (let i = 0; i < limit; i++) {
+            const card = createCard(data[i]);
+            document.getElementById("posts-container").appendChild(card);
+          }
+        })
+        .catch(err => console.error("Error:", err));
+    }
+
+    /*-------------second way--------------------*/
+
+    async function fetchPostsAsync(limit) {
+      clearContainer();
+
+      try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const data = await res.json();
+
+        for (let i = 0; i < limit; i++) {
+          const card = createCard(data[i]);
+          document.getElementById("posts-container").appendChild(card);
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    }
+  </script>
+
+</body>
+</html>
+

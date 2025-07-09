@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Only Input</title>
+</head>
+<body>
+  <h3>Enter Numbers Only:</h3>
+  <input type="text" id="numberInput" placeholder="Only numbers allowed">
+
+  <script>
+    const input = document.getElementById("numberInput");
+
+    input.addEventListener("keydown", function (event) {
+
+      if (
+        event.key === "Backspace" ||
+        event.key === "Tab" ||
+        event.key === "ArrowLeft" ||
+        event.key === "ArrowRight" ||
+        event.key === "Delete"
+      ) {
+        return;
+      }
+
+      if (!/^[0-9]$/.test(event.key)) {
+        event.preventDefault(); 
+        alert("Numbers only! ❌");
+      }
+    });
+  </script>
+</body>
+</html>

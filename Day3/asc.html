@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Key Event Checker</title>
+</head>
+<body>
+
+<h2>اضغط أي زر على الكيبورد</h2>
+
+<script>
+    document.addEventListener('keydown', function(event) {
+        
+        alert("ASCII Code: " + event.keyCode);
+
+        if (event.altKey) {
+            alert("Alt key was pressed");
+        }
+        if (event.ctrlKey) {
+            alert("Ctrl key was pressed");
+        }
+        if (event.shiftKey) {
+            alert("Shift key was pressed");
+        }
+    });
+</script>
+
+</body>
+</html>
